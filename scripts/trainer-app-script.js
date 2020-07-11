@@ -32,7 +32,8 @@ function getResponseFromBtn(e) {
     console.log(userResponse);
 
     if (userResponse == currentNote.noteResponse) {
-        console.log(true);
+        currentNote = createRandomNote();
+        console.log(currentNote);
     }
     else {
         console.log(false);
