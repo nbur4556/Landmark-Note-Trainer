@@ -15,8 +15,15 @@ window.onload = function () {
     ];
     var allNoteAccidentals = ["Natural", "Sharp", "Flat"];
 
-    var newNote = new Note(allNoteNames[16], allNoteAccidentals[0]);
+    var responseBtns = document.getElementsByClassName("response-btn");
 
-    console.log(newNote.noteName);
-    console.log(newNote.noteAccidental);
+    for (let i = 0; i < responseBtns.length; i++) {
+        responseBtns[i].addEventListener("click", respond);
+    }
+}
+
+function respond(e) {
+    var userResponse = e.srcElement.value;
+
+    console.log(userResponse);
 }
