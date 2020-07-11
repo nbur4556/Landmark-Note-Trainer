@@ -1,16 +1,41 @@
 class Note {
     constructor(noteName, noteAccidental, noteOctave) {
         this.noteName = noteName;
+        this.noteResponse = noteName
         this.noteAccidental = noteAccidental;
         this.noteOctave = noteOctave;
+
+        if (this.noteAccidental == "Flat") {
+            this.noteResponse += "b";
+        }
+        else if (this.noteAccidental == "Sharp") {
+            this.noteResponse += "#";
+        }
     }
 }
 
+var currentNote;
+
 window.onload = function () {
     var responseBtns = document.getElementsByClassName("response-btn");
+    currentNote = createRandomNote();
 
     for (let i = 0; i < responseBtns.length; i++) {
-        responseBtns[i].addEventListener("click", respond);
+        responseBtns[i].addEventListener("click", getResponseFromBtn);
+    }
+
+    console.log(currentNote);
+}
+
+function getResponseFromBtn(e) {
+    var userResponse = e.srcElement.value;
+    console.log(userResponse);
+
+    if (userResponse == currentNote.noteResponse) {
+        console.log(true);
+    }
+    else {
+        console.log(false);
     }
 }
 
@@ -24,13 +49,4 @@ function createRandomNote() {
     var octaveID = Math.floor(Math.random() * Math.floor(allNoteOctaves.length));
 
     return new Note(allNoteNames[nameID], allNoteAccidentals[accidentalID], allNoteOctaves[octaveID]);
-}
-
-function respond(e) {
-    var userResponse = e.srcElement.value;
-
-    console.log(userResponse);
-
-    var randomNote = createRandomNote();
-    console.log(randomNote);
 }
